@@ -83,7 +83,7 @@ nav {
   color: #777;
 }
 
-/* MAIN */
+/* MAIN  and it is the main part of webapp*/
 .app {
   position: relative;
   max-width: 100rem;
@@ -94,7 +94,8 @@ nav {
   gap: 2rem;
 
   /* NOTE This creates the fade in/out anumation */
-  opacity: 0;
+  /* opacity : 0 to hidden the main part, the default of opacity is 100 */
+  /* opacity: 0; */
   transition: all 1s;
 }
 
