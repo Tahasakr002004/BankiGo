@@ -68,12 +68,41 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
+//////////////////////////Task-1//// 147/////////////////
+/**how to display movements array into user interface*****/
+/**the first step */
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = 0;
+  containerMovements.textContent = '';
+  movements.forEach(function (mov, index) {
+    let moveType = mov > 0 ? 'DEPOSIT' : 'WITHDRAW';
+    const html = `<div class="movements__row">
+                     <div class="movements__type movements__type--deposit">
+                     ${index + 1} ${moveType}</div>
+                      <div class="movements__value">${mov}€</div>
+                  </div>`;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(account1.movements);
+//////////////////////////Task-2//// 150/////////////////
+/**how to compute owner-names to usable usernames****************/
+/**
+ * forExample:
+ *  Taha Sakr => ts
+ *  Jassin Schmidt => js
+ */
 
-// LECTURES in maps([]) data structures
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
-console.log(...currencies);
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const convertToUserNames = function (accounts) {
+  accounts.forEach(function (account) {
+    account.username = account.owner
+      .toLowerCase()
+      .split(' ')
+      .map(function (user) {
+        return user[0];
+      })
+      .join('');
+  });
+};
+convertToUserNames(accounts);
+console.log(accounts);
