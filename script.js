@@ -85,7 +85,7 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
-//////////////////////////Task-2//// 150/////////////////
+//////////////////////////Task-2//// 151/////////////////
 /**how to compute owner-names to usable usernames****************/
 /**
  * forExample:
@@ -106,3 +106,14 @@ const convertToUserNames = function (accounts) {
 };
 convertToUserNames(accounts);
 console.log(accounts);
+/*****************************Task-3 Calculating and Printing Balance*************************/
+// we should use reduce method with accumelator to calculate the balance of users
+const DisplayBalance = function (movements) {
+  labelBalance.textContent = '';
+  const CalcBalance = movements.reduce(function (accumelator, value, index) {
+    return accumelator + value;
+  }, 0);
+
+  labelBalance.textContent = `${CalcBalance}€`;
+};
+DisplayBalance(account1.movements);
