@@ -106,7 +106,7 @@ const convertToUserNames = function (accounts) {
 };
 convertToUserNames(accounts);
 console.log(accounts);
-/*****************************Task-3 Calculating and Printing Balance*************************/
+/*********************Task-3 Calculating and Printing Balance*********************/
 // we should use reduce method with accumelator to calculate the balance of users
 const DisplayBalance = function (movements) {
   labelBalance.textContent = '';
@@ -117,3 +117,43 @@ const DisplayBalance = function (movements) {
   labelBalance.textContent = `${CalcBalance}€`;
 };
 DisplayBalance(account1.movements);
+/**********************************Task_4********************************/
+// display the incomesummary and outcomesummary and interest,that the bank might pay for us
+
+const DisplayAllSummaries = function (movements) {
+  const displayIncome = function (movements) {
+    labelSumIn.textContent = '';
+    const calcIncome = movements
+      .filter(mov => mov > 0)
+      .reduce(function (accumelator, value) {
+        return accumelator + value;
+      }, 0);
+    labelSumIn.textContent = `${calcIncome}€`;
+  };
+  displayIncome(movements);
+  const displayOutcome = function (movements) {
+    labelSumOut.textContent = '';
+    const calcOutcome = movements
+      .filter(mov => mov < 0)
+      .reduce(function (accumelator, value) {
+        return accumelator + value;
+      }, 0);
+    labelSumOut.textContent = `${calcOutcome}€`;
+  };
+  displayOutcome(movements);
+
+  const displayInterest = function (movements) {
+    labelSumInterest.textContent = '';
+    const interestRat = 1.2 / 100;
+    const calcInterest = movements
+      .filter(mov => mov > 0)
+      .map(mov => mov * interestRat)
+      .filter(mov => mov >= 1)
+      .reduce(function (accumelator, value) {
+        return accumelator + value;
+      }, 0);
+    labelSumInterest.textContent = `${calcInterest}€`;
+  };
+  displayInterest(movements);
+};
+DisplayAllSummaries(account1.movements);
