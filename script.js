@@ -34,7 +34,7 @@ const account5 = {
   owner: 'Taha Sakr',
   movements: [500, 2000, -100, 5000, -650, -130, 70, 1100],
   interestRate: 2, // %
-  pin: 3333,
+  pin: 5555,
 };
 const account6 = {
   owner: 'Max Haberkern',
@@ -84,7 +84,7 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
 //////////////////////////Task-2//// 151/////////////////
 /**how to compute owner-names to usable usernames****************/
 /**
@@ -116,11 +116,11 @@ const DisplayBalance = function (movements) {
 
   labelBalance.textContent = `${CalcBalance}€`;
 };
-DisplayBalance(account1.movements);
+// DisplayBalance(account1.movements);
 /**********************************Task_4********************************/
 // display the incomesummary and outcomesummary and interest,that the bank might pay for us
 
-const DisplayAllSummaries = function (movements) {
+const DisplayAllSummaries = function (currentAccount) {
   const displayIncome = function (movements) {
     labelSumIn.textContent = '';
     const calcIncome = movements
@@ -130,7 +130,7 @@ const DisplayAllSummaries = function (movements) {
       }, 0);
     labelSumIn.textContent = `${calcIncome}€`;
   };
-  displayIncome(movements);
+  displayIncome(currentAccount.movements);
   const displayOutcome = function (movements) {
     labelSumOut.textContent = '';
     const calcOutcome = movements
@@ -140,11 +140,11 @@ const DisplayAllSummaries = function (movements) {
       }, 0);
     labelSumOut.textContent = `${calcOutcome}€`;
   };
-  displayOutcome(movements);
+  displayOutcome(currentAccount.movements);
 
   const displayInterest = function (movements) {
     labelSumInterest.textContent = '';
-    const interestRat = 1.2 / 100;
+    const interestRat = currentAccount.interestRate / 100;
     const calcInterest = movements
       .filter(mov => mov > 0)
       .map(mov => mov * interestRat)
@@ -154,6 +154,42 @@ const DisplayAllSummaries = function (movements) {
       }, 0);
     labelSumInterest.textContent = `${calcInterest}€`;
   };
-  displayInterest(movements);
+  displayInterest(currentAccount.movements);
 };
-DisplayAllSummaries(account1.movements);
+// DisplayAllSummaries(account1);
+/**********************************Task_5-find()***********************************************/
+// Implementierung des EinLoggen
+// 1-Event handler
+let currentAccount;
+btnLogin.addEventListener('click', function (event) {
+  // prevent reloading-form
+  event.preventDefault();
+  currentAccount = accounts.find(function (acc) {
+    return acc.username === inputLoginUsername.value;
+  });
+  console.log(currentAccount);
+  if (
+    currentAccount?.pin === Number(inputLoginPin.value) &&
+    currentAccount.username === inputLoginUsername.value
+  ) {
+    console.log('Right-password');
+    //1- zeige Welcome nachricht an
+    labelWelcome.textContent = `Welcome, ${currentAccount.owner.split(' ')[0]}`;
+    containerApp.style.opacity = 100;
+    // 2- Löschen das Einloggen-Feld
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+    //3- zeige die Umsätze oder(movements)an
+    displayMovements(currentAccount.movements);
+    //4- zeige den Kontostand/balance an
+    DisplayBalance(currentAccount.movements);
+    //5- zeige alle Transaktionen an
+    DisplayAllSummaries(currentAccount);
+  } else {
+    containerApp.style.opacity = 0;
+    // 2- Löschen das Einloggen-Feld
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+    console.log('False Login');
+  }
+});
