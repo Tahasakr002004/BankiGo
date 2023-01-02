@@ -71,10 +71,10 @@ const inputClosePin = document.querySelector('.form__input--pin');
 //////////////////////////Task-1//// 147/////////////////
 /**how to display movements array into user interface*****/
 /**the first step */
-const displayMovements = function (movements) {
+const displayMovements = function (currentAccount) {
   containerMovements.innerHTML = 0;
   containerMovements.textContent = '';
-  movements.forEach(function (mov, index) {
+  currentAccount.movements.forEach(function (mov, index) {
     let moveType = mov > 0 ? 'DEPOSIT' : 'WITHDRAW';
     const html = `<div class="movements__row">
                      <div class="movements__type movements__type--deposit">
@@ -108,13 +108,18 @@ convertToUserNames(accounts);
 console.log(accounts);
 /*********************Task-3 Calculating and Printing Balance*********************/
 // we should use reduce method with accumelator to calculate the balance of users
-const DisplayBalance = function (movements) {
+const DisplayBalance = function (account) {
   labelBalance.textContent = '';
-  const CalcBalance = movements.reduce(function (accumelator, value, index) {
+  account.Balance = account.movements.reduce(function (
+    accumelator,
+    value,
+    index
+  ) {
     return accumelator + value;
-  }, 0);
+  },
+  0);
 
-  labelBalance.textContent = `${CalcBalance}€`;
+  labelBalance.textContent = `${account.Balance}€`;
 };
 // DisplayBalance(account1.movements);
 /**********************************Task_4********************************/
@@ -160,6 +165,15 @@ const DisplayAllSummaries = function (currentAccount) {
 /**********************************Task_5-find()***********************************************/
 // Implementierung des EinLoggen
 // 1-Event handler
+const UI_Update = function (account) {
+  //3- zeige die Umsätze oder(movements)an
+  displayMovements(account);
+  //4- zeige den Kontostand/balance an
+  DisplayBalance(account);
+  //5- zeige alle Transaktionen an
+  DisplayAllSummaries(account);
+};
+
 let currentAccount;
 btnLogin.addEventListener('click', function (event) {
   // prevent reloading-form
@@ -179,17 +193,41 @@ btnLogin.addEventListener('click', function (event) {
     // 2- Löschen das Einloggen-Feld
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
-    //3- zeige die Umsätze oder(movements)an
-    displayMovements(currentAccount.movements);
-    //4- zeige den Kontostand/balance an
-    DisplayBalance(currentAccount.movements);
-    //5- zeige alle Transaktionen an
-    DisplayAllSummaries(currentAccount);
+
+    UI_Update(currentAccount);
   } else {
     containerApp.style.opacity = 0;
     // 2- Löschen das Einloggen-Feld
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
     console.log('False Login');
+  }
+});
+
+/**********************************Task_6***********************************************/
+// Implementing Transfers
+btnTransfer.addEventListener('click', function (event) {
+  event.preventDefault();
+
+  const amount = Number(inputTransferAmount.value);
+  const receiverAccount = accounts.find(function (account) {
+    return account.username === inputTransferTo.value;
+  });
+  console.log(amount, receiverAccount);
+  inputTransferTo.value = inputTransferAmount.value = '';
+  inputTransferAmount.blur();
+
+  if (
+    amount > 0 &&
+    receiverAccount &&
+    amount < currentAccount.Balance &&
+    receiverAccount.username !== currentAccount.username
+  ) {
+    console.log('right condition');
+    receiverAccount.movements.push(amount);
+    currentAccount.movements.push(amount * -1);
+    UI_Update(currentAccount);
+  } else {
+    console.log('error');
   }
 });
