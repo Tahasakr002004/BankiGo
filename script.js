@@ -254,3 +254,27 @@ btnClose.addEventListener('click', function (event) {
   }
   inputCloseUsername.value = inputClosePin.value = '';
 });
+
+/**********************************Task_8***********************************************/
+// Implementing Loan requests
+// the mount of any deposits in transaktions of movements must be >= 10% of mount of loan
+// Event handler
+btnLoan.addEventListener('click', function (event) {
+  event.preventDefault();
+  const amountLoan = Number(inputLoanAmount.value);
+  const loanRate = amountLoan * 0.1;
+  if (
+    amountLoan > 0 &&
+    currentAccount.movements.some(function (mov) {
+      return mov > loanRate;
+    })
+  ) {
+    currentAccount.movements.push(amountLoan);
+    // Update the UI
+    UI_Update(currentAccount);
+  } else {
+    console.log('loan refused');
+  }
+  inputLoanAmount.value = '';
+  inputLoanAmount.blur();
+});
