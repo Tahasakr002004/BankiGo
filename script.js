@@ -231,3 +231,26 @@ btnTransfer.addEventListener('click', function (event) {
     console.log('error');
   }
 });
+
+/**********************************Task_7***********************************************/
+//the findIndex()
+// Implementing of Closing account
+// Eventhandler with addEventListener()
+btnClose.addEventListener('click', function (event) {
+  event.preventDefault();
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc =>
+        acc.username === currentAccount.username &&
+        acc.pin === currentAccount.pin
+    );
+    // delete account
+    accounts.splice(index, 1);
+    //hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
+});
