@@ -71,10 +71,15 @@ const inputClosePin = document.querySelector('.form__input--pin');
 //////////////////////////Task-1//// 147/////////////////
 /**how to display movements array into user interface*****/
 /**the first step */
-const displayMovements = function (currentAccount) {
+
+const displayMovements = function (currentAccount, sort = false) {
   containerMovements.innerHTML = 0;
   containerMovements.textContent = '';
-  currentAccount.movements.forEach(function (mov, index) {
+  const ascending = (a, b) => a - b;
+  const Moves = sort
+    ? currentAccount.movements.slice().sort(ascending)
+    : currentAccount.movements;
+  Moves.forEach(function (mov, index) {
     let moveType = mov > 0 ? 'DEPOSIT' : 'WITHDRAW';
     const html = `<div class="movements__row">
                      <div class="movements__type movements__type--deposit">
@@ -277,4 +282,17 @@ btnLoan.addEventListener('click', function (event) {
   }
   inputLoanAmount.value = '';
   inputLoanAmount.blur();
+});
+
+/**********************************Task_9***********************************************/
+// Sorting the movements of account
+// ascending and descending by using .sort(callb)
+// but we should the functionality of displayMovements()
+// by add sort() in Task_1
+// sorted variable is called here a state variable
+let sorted = false;
+btnSort.addEventListener('click', function (event) {
+  event.preventDefault();
+  displayMovements(currentAccount, !sorted);
+  sorted = !sorted;
 });
