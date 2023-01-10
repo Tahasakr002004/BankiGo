@@ -152,10 +152,19 @@ const displayMovements = function (currentAccount, sort = false) {
     ? currentAccount.movements.slice().sort(ascending)
     : currentAccount.movements;
   Moves.forEach(function (mov, index) {
-    let moveType = mov > 0 ? 'DEPOSIT' : 'WITHDRAW';
+    let moveType = mov > 0 ? 'deposit' : 'withdrawal';
+    const acc_date = new Date(currentAccount.movementsDates[index]);
+    // day/month/year
+    const year = acc_date.getFullYear();
+    const month = `${acc_date.getMonth() + 1}`.padStart(2, 0);
+    const day = `${acc_date.getDate()}`.padStart(2, 0);
+    const process_date = `${day}/${month}/${year}`;
+
     const html = `<div class="movements__row">
-                     <div class="movements__type movements__type--deposit">
+                     <div class="movements__type movements__type--${moveType}">
                      ${index + 1} ${moveType}</div>
+                     <div class="movements__date">${process_date}</div>
+
                       <div class="movements__value">${mov.toFixed(2)}€</div>
                   </div>`;
     containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -270,7 +279,16 @@ btnLogin.addEventListener('click', function (event) {
     // 2- Löschen das Einloggen-Feld
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
-
+    /****************Task_11*************/
+    //Create current date and time
+    // day/month/year
+    const nowDate = new Date();
+    const year = nowDate.getFullYear();
+    const month = `${nowDate.getMonth() + 1}`.padStart(2, 0);
+    const day = `${nowDate.getDate()}`.padStart(2, 0);
+    const hour = `${nowDate.getHours()}`.padStart(2, 0);
+    const min = `${nowDate.getMinutes()}`.padStart(2, 0);
+    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
     UI_Update(currentAccount);
   } else {
     containerApp.style.opacity = 0;
@@ -302,7 +320,9 @@ btnTransfer.addEventListener('click', function (event) {
   ) {
     console.log('right condition');
     receiverAccount.movements.push(amount);
+    receiverAccount.movementsDates.push(new Date().toISOString()); // task_11
     currentAccount.movements.push(amount * -1);
+    currentAccount.movementsDates.push(new Date().toISOString()); // task_11
     UI_Update(currentAccount);
   } else {
     console.log('error');
@@ -347,6 +367,7 @@ btnLoan.addEventListener('click', function (event) {
     })
   ) {
     currentAccount.movements.push(amountLoan);
+    currentAccount.movementsDates.push(new Date().toISOString());
     // Update the UI
     UI_Update(currentAccount);
   } else {
