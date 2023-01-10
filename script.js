@@ -75,8 +75,8 @@ const account4 = {
     '2022-07-11T23:36:17.929Z',
     '2022-07-11T10:51:36.790Z',
   ],
-  currency: 'AUD',
-  locale: 'en-AD',
+  currency: 'GBP',
+  locale: 'en-EN',
 };
 const account5 = {
   owner: 'Taha Sakr',
@@ -142,6 +142,16 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 ////////////////////////////////////////////////////////////////////////////////
 /*******************Task_13******************/
+// internationalizing the all Numbers and currenies with API
+const InternationalNumber = function (value, acc) {
+  const options = {
+    style: 'currency',
+    currency: acc.currency,
+  };
+  const init = new Intl.NumberFormat(acc.locale, options).format(value);
+  return init;
+};
+/*******************Task_12auch******************/
 // internatize date
 const international_Date = function (locale, date) {
   const options = {
@@ -197,9 +207,12 @@ const displayMovements = function (currentAccount, sort = false) {
                      <div class="movements__type movements__type--${moveType}">
                      ${index + 1} ${moveType}</div>
                      <div class="movements__date">${process_date}</div>
-
-                      <div class="movements__value">${mov.toFixed(2)}€</div>
+                      <div class="movements__value">${InternationalNumber(
+                        mov,
+                        currentAccount
+                      )}</div>
                   </div>`;
+    // <div class="movements__value">${mov.toFixed(2)}€</div>
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
@@ -238,7 +251,8 @@ const DisplayBalance = function (account) {
   },
   0);
 
-  labelBalance.textContent = `${account.Balance.toFixed(2)}€`;
+  // labelBalance.textContent = `${account.Balance.toFixed(2)}€`;
+  labelBalance.textContent = `${InternationalNumber(account.Balance, account)}`;
 };
 // DisplayBalance(account1.movements);
 /**********************************Task_4********************************/
@@ -252,7 +266,10 @@ const DisplayAllSummaries = function (currentAccount) {
       .reduce(function (accumelator, value) {
         return accumelator + value;
       }, 0);
-    labelSumIn.textContent = `${calcIncome.toFixed(2)}€`;
+    labelSumIn.textContent = `${InternationalNumber(
+      calcIncome,
+      currentAccount
+    )}`;
   };
   displayIncome(currentAccount.movements);
   const displayOutcome = function (movements) {
@@ -262,7 +279,10 @@ const DisplayAllSummaries = function (currentAccount) {
       .reduce(function (accumelator, value) {
         return accumelator + value;
       }, 0);
-    labelSumOut.textContent = `${calcOutcome.toFixed(2)}€`;
+    labelSumOut.textContent = `${InternationalNumber(
+      calcOutcome,
+      currentAccount
+    )}`;
   };
   displayOutcome(currentAccount.movements);
 
@@ -276,7 +296,10 @@ const DisplayAllSummaries = function (currentAccount) {
       .reduce(function (accumelator, value) {
         return accumelator + value;
       }, 0);
-    labelSumInterest.textContent = `${calcInterest.toFixed(2)}€`;
+    labelSumInterest.textContent = `${InternationalNumber(
+      calcInterest,
+      currentAccount
+    )}`;
   };
   displayInterest(currentAccount.movements);
 };
