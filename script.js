@@ -9,14 +9,14 @@ const account1 = {
   interestRate: 1.2, // %
   pin: 1111,
   movementsDates: [
-    '2019-11-18T21:31:17.189Z',
-    '2019-12-23T07:42:02.739Z',
-    '2019-01-28T09:15:04.842Z',
-    '2019-04-01T10:11:24.446Z',
-    '2019-05-08T14:17:59.183Z',
-    '2019-05-27T17:01:17.194Z',
-    '2019-07-11T23:36:17.929Z',
-    '2019-07-11T10:51:36.790Z',
+    '2022-05-08T14:17:59.183Z',
+    '2022-05-27T17:01:17.194Z',
+    '2022-07-11T23:36:17.929Z',
+    '2022-07-11T10:51:36.790Z',
+    '2023-01-10T21:31:17.189Z',
+    '2023-01-09T07:42:02.739Z',
+    '2023-01-08T09:15:04.842Z',
+    '2023-01-06T10:11:24.446Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -28,14 +28,14 @@ const account2 = {
   interestRate: 1.5,
   pin: 2222,
   movementsDates: [
-    '2019-11-18T21:31:17.189Z',
-    '2019-12-23T07:42:02.739Z',
-    '2019-01-28T09:15:04.842Z',
-    '2019-04-01T10:11:24.446Z',
-    '2019-05-08T14:17:59.183Z',
-    '2019-05-27T17:01:17.194Z',
-    '2019-07-11T23:36:17.929Z',
-    '2019-07-11T10:51:36.790Z',
+    '2022-11-18T21:31:17.189Z',
+    '2022-12-23T07:42:02.739Z',
+    '2022-01-28T09:15:04.842Z',
+    '2022-04-01T10:11:24.446Z',
+    '2022-05-08T14:17:59.183Z',
+    '2022-05-27T17:01:17.194Z',
+    '2022-07-11T23:36:17.929Z',
+    '2022-07-11T10:51:36.790Z',
   ],
   currency: 'USD',
   locale: 'en-US', // de-DE
@@ -47,14 +47,14 @@ const account3 = {
   interestRate: 0.7,
   pin: 3333,
   movementsDates: [
-    '2019-11-18T21:31:17.189Z',
-    '2019-12-23T07:42:02.739Z',
-    '2019-01-28T09:15:04.842Z',
-    '2019-04-01T10:11:24.446Z',
-    '2019-05-08T14:17:59.183Z',
-    '2019-05-27T17:01:17.194Z',
-    '2019-07-11T23:36:17.929Z',
-    '2019-07-11T10:51:36.790Z',
+    '2022-11-18T21:31:17.189Z',
+    '2022-12-23T07:42:02.739Z',
+    '2022-01-28T09:15:04.842Z',
+    '2022-04-01T10:11:24.446Z',
+    '2022-05-08T14:17:59.183Z',
+    '2022-05-27T17:01:17.194Z',
+    '2022-07-11T23:36:17.929Z',
+    '2022-07-11T10:51:36.790Z',
   ],
   currency: 'GBP',
   locale: 'en-EN',
@@ -66,14 +66,14 @@ const account4 = {
   interestRate: 1,
   pin: 4444,
   movementsDates: [
-    '2019-11-18T21:31:17.189Z',
-    '2019-12-23T07:42:02.739Z',
-    '2019-01-28T09:15:04.842Z',
-    '2019-04-01T10:11:24.446Z',
-    '2019-05-08T14:17:59.183Z',
-    '2019-05-27T17:01:17.194Z',
-    '2019-07-11T23:36:17.929Z',
-    '2019-07-11T10:51:36.790Z',
+    '2022-11-18T21:31:17.189Z',
+    '2022-12-23T07:42:02.739Z',
+    '2023-01-28T09:15:04.842Z',
+    '2022-04-01T10:11:24.446Z',
+    '2022-05-08T14:17:59.183Z',
+    '2022-05-27T17:01:17.194Z',
+    '2022-07-11T23:36:17.929Z',
+    '2022-07-11T10:51:36.790Z',
   ],
   currency: 'AUD',
   locale: 'en-AD',
@@ -84,14 +84,14 @@ const account5 = {
   interestRate: 2, // %
   pin: 5555,
   movementsDates: [
-    '2019-11-18T21:31:17.189Z',
-    '2019-12-23T07:42:02.739Z',
-    '2019-01-28T09:15:04.842Z',
-    '2019-04-01T10:11:24.446Z',
-    '2019-05-08T14:17:59.183Z',
-    '2019-05-27T17:01:17.194Z',
-    '2019-07-11T23:36:17.929Z',
-    '2019-07-11T10:51:36.790Z',
+    '2022-11-18T21:31:17.189Z',
+    '2022-12-23T07:42:02.739Z',
+    '2022-01-28T09:15:04.842Z',
+    '2022-04-01T10:11:24.446Z',
+    '2022-05-08T14:17:59.183Z',
+    '2022-05-27T17:01:17.194Z',
+    '2022-07-11T23:36:17.929Z',
+    '2022-07-11T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'de-DE',
@@ -102,14 +102,14 @@ const account6 = {
   interestRate: 3,
   pin: 1234,
   movementsDates: [
-    '2019-11-18T21:31:17.189Z',
-    '2019-12-23T07:42:02.739Z',
-    '2019-01-28T09:15:04.842Z',
-    '2019-04-01T10:11:24.446Z',
-    '2019-05-08T14:17:59.183Z',
-    '2019-05-27T17:01:17.194Z',
-    '2019-07-11T23:36:17.929Z',
-    '2019-07-11T10:51:36.790Z',
+    '2022-11-18T21:31:17.189Z',
+    '2022-12-23T07:42:02.739Z',
+    '2022-01-28T09:15:04.842Z',
+    '2022-04-01T10:11:24.446Z',
+    '2022-05-08T14:17:59.183Z',
+    '2022-05-27T17:01:17.194Z',
+    '2022-07-11T23:36:17.929Z',
+    '2022-07-11T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'de-DE',
@@ -140,10 +140,43 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
+////////////////////////////////////////////////////////////////////////////////
+/*******************Task_13******************/
+// internatize date
+const international_Date = function (locale, date) {
+  const options = {
+    hour: 'numeric',
+    minute: 'numeric',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    // weekday: 'long',
+  };
+  const init = new Intl.DateTimeFormat(locale, options).format(date);
+  return init;
+};
+/*******************Task_12***************/
+// how to implement displaydates and change format
+const datesFormater = function (locale, acc_date) {
+  const passedDaysCalculator = (date1, date2) =>
+    Math.abs((date1 - date2) / (1000 * 60 * 60 * 24));
+  const passedDays = Math.round(
+    passedDaysCalculator(new Date(), new Date(acc_date))
+  );
+  if (passedDays === 0) return 'Today';
+  if (passedDays === 1) return 'Yesterday';
+  if (passedDays > 1 && passedDays <= 7) return `${passedDays} days ago`;
+  else {
+    // const year = acc_date.getFullYear();
+    // const month = `${acc_date.getMonth() + 1}`.padStart(2, 0);
+    // const day = `${acc_date.getDate()}`.padStart(2, 0);
+    // return `${day}/${month}/${year}`;
+    return international_Date(locale, acc_date);
+  }
+};
 //////////////////////////Task-1//// 147/////////////////
 /**how to display movements array into user interface*****/
 /**the first step */
-
 const displayMovements = function (currentAccount, sort = false) {
   containerMovements.innerHTML = 0;
   containerMovements.textContent = '';
@@ -155,11 +188,11 @@ const displayMovements = function (currentAccount, sort = false) {
     let moveType = mov > 0 ? 'deposit' : 'withdrawal';
     const acc_date = new Date(currentAccount.movementsDates[index]);
     // day/month/year
-    const year = acc_date.getFullYear();
-    const month = `${acc_date.getMonth() + 1}`.padStart(2, 0);
-    const day = `${acc_date.getDate()}`.padStart(2, 0);
-    const process_date = `${day}/${month}/${year}`;
-
+    // const year = acc_date.getFullYear();
+    // const month = `${acc_date.getMonth() + 1}`.padStart(2, 0);
+    // const day = `${acc_date.getDate()}`.padStart(2, 0);
+    // const process_date = `${day}/${month}/${year}`;
+    const process_date = datesFormater(currentAccount.locale, acc_date);
     const html = `<div class="movements__row">
                      <div class="movements__type movements__type--${moveType}">
                      ${index + 1} ${moveType}</div>
@@ -261,6 +294,7 @@ const UI_Update = function (account) {
 };
 
 let currentAccount;
+
 btnLogin.addEventListener('click', function (event) {
   // prevent reloading-form
   event.preventDefault();
@@ -279,16 +313,20 @@ btnLogin.addEventListener('click', function (event) {
     // 2- Löschen das Einloggen-Feld
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
+    /***************Task_13***********/
+    //internationalizing dates and times with API
+    // based on userlocale
+    const nowDate = new Date();
+    labelDate.textContent = international_Date(currentAccount.locale, nowDate);
     /****************Task_11*************/
     //Create current date and time
     // day/month/year
-    const nowDate = new Date();
-    const year = nowDate.getFullYear();
-    const month = `${nowDate.getMonth() + 1}`.padStart(2, 0);
-    const day = `${nowDate.getDate()}`.padStart(2, 0);
-    const hour = `${nowDate.getHours()}`.padStart(2, 0);
-    const min = `${nowDate.getMinutes()}`.padStart(2, 0);
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+    // const year = nowDate.getFullYear();
+    // const month = `${nowDate.getMonth() + 1}`.padStart(2, 0);
+    // const day = `${nowDate.getDate()}`.padStart(2, 0);
+    // const hour = `${nowDate.getHours()}`.padStart(2, 0);
+    // const min = `${nowDate.getMinutes()}`.padStart(2, 0);
+    // labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
     UI_Update(currentAccount);
   } else {
     containerApp.style.opacity = 0;
