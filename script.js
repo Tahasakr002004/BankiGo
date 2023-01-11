@@ -141,6 +141,30 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 ////////////////////////////////////////////////////////////////////////////////
+/**********************Task_14**********************/
+let Timer;
+const setLogTimer = function () {
+  let time = 120;
+  const Tick = function () {
+    let min = `${Math.floor(time / 60)}`.padStart(2, 0);
+    let sec = `${time % 60}`.padStart(2, 0);
+    // in each call, print the remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+    // when 0 seconds, stop timer and logout
+    if (time === 0) {
+      clearInterval(intervalTimer);
+      labelWelcome.textContent = `Log in again to get started`;
+      containerApp.style.opacity = 0;
+    }
+    time--;
+  };
+  // call this Tick() immediately then pass it in interval
+  // for more Perfomance
+  Tick();
+  const intervalTimer = setInterval(Tick, 1000);
+  return intervalTimer;
+};
+
 /*******************Task_13******************/
 // internationalizing the all Numbers and currenies with API
 const InternationalNumber = function (value, acc) {
@@ -237,7 +261,6 @@ const convertToUserNames = function (accounts) {
   });
 };
 convertToUserNames(accounts);
-console.log(accounts);
 /*********************Task-3 Calculating and Printing Balance*********************/
 // we should use reduce method with accumelator to calculate the balance of users
 const DisplayBalance = function (account) {
@@ -321,15 +344,16 @@ let currentAccount;
 btnLogin.addEventListener('click', function (event) {
   // prevent reloading-form
   event.preventDefault();
+  // Timer
+  if (Timer) clearInterval(Timer);
+  Timer = setLogTimer();
   currentAccount = accounts.find(function (acc) {
     return acc.username === inputLoginUsername.value;
   });
-  console.log(currentAccount);
   if (
     currentAccount?.pin === Number(inputLoginPin.value) &&
     currentAccount.username === inputLoginUsername.value
   ) {
-    console.log('Right-password');
     //1- zeige Welcome nachricht an
     labelWelcome.textContent = `Welcome, ${currentAccount.owner.split(' ')[0]}`;
     containerApp.style.opacity = 100;
@@ -356,7 +380,6 @@ btnLogin.addEventListener('click', function (event) {
     // 2- Löschen das Einloggen-Feld
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
-    console.log('False Login');
   }
 });
 
@@ -379,15 +402,19 @@ btnTransfer.addEventListener('click', function (event) {
     amount < currentAccount.Balance &&
     receiverAccount.username !== currentAccount.username
   ) {
-    console.log('right condition');
-    receiverAccount.movements.push(amount);
-    receiverAccount.movementsDates.push(new Date().toISOString()); // task_11
-    currentAccount.movements.push(amount * -1);
-    currentAccount.movementsDates.push(new Date().toISOString()); // task_11
-    UI_Update(currentAccount);
+    setTimeout(function () {
+      receiverAccount.movements.push(amount);
+      receiverAccount.movementsDates.push(new Date().toISOString()); // task_11
+      currentAccount.movements.push(amount * -1);
+      currentAccount.movementsDates.push(new Date().toISOString()); // task_11
+      UI_Update(currentAccount);
+    }, 3000);
   } else {
     console.log('error');
   }
+  // Reset Timer
+  if (Timer) clearInterval(Timer);
+  Timer = setLogTimer();
 });
 
 /**********************************Task_7***********************************************/
@@ -411,6 +438,9 @@ btnClose.addEventListener('click', function (event) {
     containerApp.style.opacity = 0;
   }
   inputCloseUsername.value = inputClosePin.value = '';
+  // Reset Timer
+  if (Timer) clearInterval(Timer);
+  Timer = setLogTimer();
 });
 
 /**********************************Task_8***********************************************/
@@ -427,15 +457,24 @@ btnLoan.addEventListener('click', function (event) {
       return mov > loanRate;
     })
   ) {
-    currentAccount.movements.push(amountLoan);
-    currentAccount.movementsDates.push(new Date().toISOString());
-    // Update the UI
-    UI_Update(currentAccount);
+    setTimeout(
+      function () {
+        currentAccount.movements.push(amountLoan);
+        currentAccount.movementsDates.push(new Date().toISOString());
+        // Update the UI
+        UI_Update(currentAccount);
+      },
+
+      3000
+    );
   } else {
     console.log('loan refused');
   }
   inputLoanAmount.value = '';
   inputLoanAmount.blur();
+  // Reset Timer
+  if (Timer) clearInterval(Timer);
+  Timer = setLogTimer();
 });
 
 /**********************************Task_9***********************************************/
@@ -449,4 +488,7 @@ btnSort.addEventListener('click', function (event) {
   event.preventDefault();
   displayMovements(currentAccount, !sorted);
   sorted = !sorted;
+  // Reset Timer
+  if (Timer) clearInterval(Timer);
+  Timer = setLogTimer();
 });
