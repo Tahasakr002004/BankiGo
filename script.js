@@ -7,6 +7,7 @@ const account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
+  username: jonas,
   pin: 1111,
   movementsDates: [
     '2022-05-08T14:17:59.183Z',
@@ -26,6 +27,7 @@ const account2 = {
   owner: 'Jessica Davis',
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
+  username: jessica,
   pin: 2222,
   movementsDates: [
     '2022-11-18T21:31:17.189Z',
@@ -45,6 +47,7 @@ const account3 = {
   owner: 'Steven Thomas Williams',
   movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7,
+  username: steven,
   pin: 3333,
   movementsDates: [
     '2022-11-18T21:31:17.189Z',
@@ -64,6 +67,7 @@ const account4 = {
   owner: 'Sarah Smith',
   movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
+  username: sarah,
   pin: 4444,
   movementsDates: [
     '2022-11-18T21:31:17.189Z',
@@ -82,6 +86,7 @@ const account5 = {
   owner: 'Taha Sakr',
   movements: [500, 2000, -100, 5000, -650, -130, 70, 1100],
   interestRate: 2, // %
+  username: taha,
   pin: 5555,
   movementsDates: [
     '2022-11-18T21:31:17.189Z',
@@ -100,6 +105,7 @@ const account6 = {
   owner: 'Max Haberkern',
   movements: [600, 3000, -200, 6000, -750, -230, 80, 1200],
   interestRate: 3,
+  username: max,
   pin: 1234,
   movementsDates: [
     '2022-11-18T21:31:17.189Z',
