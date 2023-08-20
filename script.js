@@ -153,7 +153,7 @@ const setLogTimer = function () {
     // when 0 seconds, stop timer and logout
     if (time === 0) {
       clearInterval(intervalTimer);
-      labelWelcome.textContent = `Log in again to get started`;
+      labelWelcome.textContent = `Log  to get started`;
       containerApp.style.opacity = 0;
     }
     time--;
